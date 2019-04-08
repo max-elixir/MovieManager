@@ -21,3 +21,11 @@ create table movie(
 	rating integer, 
 	genre varchar2(10)
 );
+
+create table ad_schedule(
+	adSchedId integer primary key,
+	screenId integer primary key,
+	start_time decimal(3,2),
+	foreign key(adSchedId) references ad(adId),
+	foreign key(screenId) references movie_schedule(screenId)
+);
