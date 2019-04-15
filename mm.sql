@@ -1,15 +1,15 @@
 create table film(
 	filmId integer primary key,
-	title varchar2(25), 
-	runtime decimal(3,2),
-	filmtype char(7),
+	title varchar2(25) not null, 
+	runtime decimal(3,2) not null,
+	filmtype char(7) not null,
 	genre varchar2(25),
-	license_cost decimal (10,2)
+	license_cost decimal (10,2) not null
 );
 
 create table trailer(
 	trailerId integer primary key,
-	band varchar2(5),
+	band varchar2(5) not null,
 	foreign key(trailerId) references film(filmId)
 );
 
@@ -22,28 +22,28 @@ create table movies(
 );
 
 create table movie_schedule(
-	filmId integer, 
+	filmId integer not null, 
 	screenId integer primary key,
-	room_num integer,
-	start_time timestamp,
-	is_showing integer,
-	showdate date,
+	room_num integer not null,
+	start_time timestamp not null,
+	is_showing integer not null,
+	showdate date not null,
 	foreign key (filmId) references film(filmId)
 );
 
 create table ad(
 	adId integer primary key,
-	title varchar2(25),
-	runtime integer,
-	in_house integer,
-	ad_type varchar2(12),
+	title varchar2(25) not null,
+	runtime integer not null,
+	in_house integer not null,
+	ad_type varchar2(12) not null,
 	company varchar2(30),
-	profit decimal(3,2)
+	profit decimal(3,2) not null
 );
 
 create table ad_schedule(
 	adId integer primary key,
-	screenId integer,
+	screenId integer not null,
 	start_time timestamp,
 	foreign key(adId) references ad(adId),
 	foreign key(screenId) references movie_schedule(screenId)
@@ -61,7 +61,7 @@ create table users(
 
 create table customer_tickets(
 	custId integer primary key,
-	screenId integer,
+	screenId integer not null,
 	foreign key (custId) references users(id),
 	foreign key (screenID) references movie_schedule(screenId)
 );
