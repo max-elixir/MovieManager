@@ -17,14 +17,13 @@ create table movie(
 	movieId integer primary key,
 	release_date Date not null,
 	expiration_date Date not null,
-	rating integer, 
-	genre varchar2(10),
+	rating char(5) not null, 
 	foreign key (movieId) references film(filmId)
 );
 
 create table movie_schedule(
 	filmId integer, 
-	screenID integer primary key,
+	screenId integer primary key,
 	room_num integer,
 	start_time decimal(3,2),
 	is_showing integer,
@@ -33,7 +32,7 @@ create table movie_schedule(
 );
 
 create table ad(
-	adID integer primary key,
+	adId integer primary key,
 	title varchar2(25),
 	in_house integer,
 	ad_type int,
