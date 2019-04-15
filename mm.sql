@@ -2,6 +2,8 @@ create table film(
 	filmId integer primary key,
 	title varchar2(25), 
 	runtime decimal(3,2),
+	filmtype char(7),
+	genre varchar2(25),
 	license_cost decimal (10,2)
 );
 
@@ -29,8 +31,6 @@ create table movie_schedule(
 	showdate date,
 	foreign key (filmId) references film(filmId)
 );
-
-
 
 create table ad(
 	adID integer primary key,
