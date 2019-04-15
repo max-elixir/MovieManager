@@ -13,7 +13,7 @@ create table trailer(
 	foreign key(trailerId) references film(filmId)
 );
 
-create table movie(
+create table movies(
 	movieId integer primary key,
 	release_date Date not null,
 	expiration_date Date not null,
@@ -25,7 +25,7 @@ create table movie_schedule(
 	filmId integer, 
 	screenId integer primary key,
 	room_num integer,
-	start_time decimal(3,2),
+	start_time timestamp,
 	is_showing integer,
 	showdate date,
 	foreign key (filmId) references film(filmId)
@@ -34,27 +34,29 @@ create table movie_schedule(
 create table ad(
 	adId integer primary key,
 	title varchar2(25),
+	runtime integer,
 	in_house integer,
-	ad_type int,
+	ad_type varchar2(12),
 	company varchar2(30),
 	profit decimal(3,2)
 );
 
 create table ad_schedule(
-	adSchedId integer primary key,
+	adId integer primary key,
 	screenId integer,
-	start_time decimal(3,2),
-	foreign key(adSchedId) references ad(adId),
+	start_time timestamp,
+	foreign key(adId) references ad(adId),
 	foreign key(screenId) references movie_schedule(screenId)
 );
 
+-- TODO encrypt passwords when using bcrypt
 create table users(
 	id 	integer primary key,
 	username varchar2(30) not null,
 	password varchar2(30) not null,
 	first_name varchar2(20),
 	last_name varchar2(20),
-	role varchar2(8)
+	role char(2)
 );
 
 create table customer_tickets(
