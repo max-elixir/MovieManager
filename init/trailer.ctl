@@ -1,0 +1,6 @@
+LOAD DATA
+INFILE trailer.txt
+APPEND
+INTO TABLE trailer
+FIELDS TERMINATED BY "," OPTIONALLY ENCLOSED BY '"'
+(trailerId, band)
