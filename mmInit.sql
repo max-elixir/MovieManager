@@ -11,14 +11,14 @@ insert into movie values(0, 26-APR-2019, 26-JUL-2019, 'pg-13');
 insert into movie values(3, 12-APR-2019, 12-MAY-2019, 'r');
 insert into movie values(4, 12-APR-2019, 12-MAY-2019, 'PG-13');
 
-insert into movie_schedule values(0, 0, 1, 10.00, 1, '26-APR-2019');
-insert into movie_schedule values(0, 1, 2, 10.30, 1, '26-APR-2019');
-insert into movie_schedule values(0, 2, 3, 12.00, 1, '26-APR-2019');
-insert into movie_schedule values(0, 3, 1, 2.00, 1, '26-APR-2019');
-insert into movie_schedule values(1, 4, 1, 9.57, 1, '26-APR-2019');
-insert into movie_schedule values(1, 5, 2, 10.27, 1, '26-APR-2019');
-insert into movie_schedule values(1, 6, 3, 11.57, 1, '26-APR-2019');
-insert into movie_schedule values(3, 7, 2, 10.45, 0, '26-APR-2019');
+insert into movie_schedule values(0, 0, 1, 26-APR-2019 10.00, 1, 26-APR-2019);
+insert into movie_schedule values(0, 1, 2, 26-APR-2019 10.30, 1, 26-APR-2019);
+insert into movie_schedule values(0, 2, 3, 26-APR-2019 12.00, 1, 26-APR-2019);
+insert into movie_schedule values(0, 3, 1, 26-APR-2019 2.00, 1, 26-APR-2019);
+insert into movie_schedule values(1, 4, 1, 26-APR-2019 9.57, 1, 26-APR-2019);
+insert into movie_schedule values(1, 5, 2, 26-APR-2019 10.27, 1, 26-APR-2019);
+insert into movie_schedule values(1, 6, 3, 26-APR-2019 11.57, 1, 26-APR-2019);
+insert into movie_schedule values(3, 7, 2, 26-APR-2019 10.45, 0, 26-APR-2019);
 
 insert into ad values(0, 'Coca-Cola: summer vacation', 0.01, 0, 'coca-cola', 100.50);
 insert into ad values(1, 'lets all go to the lobby', 0.01, 1, 'theater', 0.0);
