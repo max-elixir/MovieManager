@@ -25,8 +25,8 @@ create table movie_schedule(
 	filmId integer not null, 
 	screenId integer primary key,
 	room_num integer not null,
-	start_time timestamp not null,
 	is_showing integer not null,
+	start_time timestamp not null,
 	foreign key (filmId) references film(filmId)
 );
 
