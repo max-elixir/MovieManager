@@ -1,8 +1,8 @@
-insert into film values (0, 'Avengers: Endgame', 3.0, 'movie', 'superhero', 300.00);
-insert into film values (1, 'Spiderman: Far From Home', 0.05, 'trailer', 'superhero', 50.00);
-insert into film values (2, 'Toy Story 4', 0.05, 'trailer', 'Family', 50.00);
-insert into film values (3, 'Hellboy (2019)', 2.0, 'movie', 'action', 200.00)
-insert into film values (4, 'Little', 1.5, 'movie', 'comedy', 200.00);
+insert into film values(0, 'Avengers: Endgame', 3.0, 'movie', 'superhero', 300.00);
+insert into film values(1, 'Spiderman: Far From Home', 0.05, 'trailer', 'superhero', 50.00);
+insert into film values(2, 'Toy Story 4', 0.05, 'trailer', 'Family', 50.00);
+insert into film values(3, 'Hellboy (2019)', 2.0, 'movie', 'action', 200.00)
+insert into film values(4, 'Little', 1.5, 'movie', 'comedy', 200.00);
 
 insert into trailer values(1, green);
 insert into trailer values(2, green);
