@@ -22,11 +22,11 @@ insert into movie_schedule values(3, 7, 2, 26-APR-2019 10.45, 0, 26-APR-2019);
 
 insert into ad values(0, 'Coca-Cola: summer vacation', 0.01, 0, 'commercial', 'coca-cola', 100.50);
 insert into ad values(1, 'lets all go to the lobby', 0.01, 1, 'in-house', 'theater', 0.0);
-insert into ad values(2, 'SA Film Festival', 0.01, 0, 'commercial', 'City of San Antonio', 200.00);
+insert into ad values(2, 'SA Film Festival', 0.01, 0, 'commercial', 'City of San Antonio', 20.00);
 
-insert into ad_schedule values(0, 8, 9.56);
-insert into ad_schedule values(1, 9, 10.26);
-insert into ad_schedule values(1, 10, 11.26);
+insert into ad_schedule values(0, 8, 19-SEP-2019 12.00);
+insert into ad_schedule values(1, 9, 26-OCT-2019 12.00);
+insert into ad_schedule values(1, 10, 26-NOV-2019 12.00);
 
 insert into users values(0, 'max_elixir', 'blue12345', 'Max', 'Guzman', 'SA');
 insert into users values(1, 'buitrago', 'groupLeader1', 'Isaac', 'Buitrago', 'SA');
@@ -51,6 +51,5 @@ insert into customer_tickets values(5, 1);
 insert into customer_tickets values(6, 3);
 insert into customer_tickets values(7, 3);
 insert into customer_tickets values(8, 3);
-insert into customer_tickets values(8, 2);
 insert into customer_tickets values(9, 3);
 insert into customer_tickets values(10, 2);
