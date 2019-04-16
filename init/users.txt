@@ -1,0 +1,13 @@
+0, max_elixir, blue12345, Max, Guzman, SA
+1, buitrago, groupLeader1, Isaac, Buitrago, SA
+2, jason-kha, yoshi, Jason, Kha, SA
+3, bsmith, bigboss, Brad, Smith, O
+4, hmendez, yugioh, Henry, Mendez, M
+5, asolis, coolmom, Amy, Solis, M
+6, rotiz, bigknife, Roman, Ortiz, M
+7, pochoa, yeahthatsfine, Paul, Ochoa, M
+8, user, password, john, doe, C
+9, username, password, jane, doe, C
+10, Markiplier, mustache, Mark, Fishbach, C
+11, rslavin, systems, Rocky, Slavin, C
+12, lclark, readthenotes, Larry, Clark, C
