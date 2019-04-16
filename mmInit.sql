@@ -7,9 +7,9 @@ insert into film values (4, 'Little', 1.5, 'movie', 'comedy', 200.00);
 insert into trailer values(1, green);
 insert into trailer values(2, green);
 
-insert into movies values(0, '26-APR-2019', '26-JUL-2019', 'pg-13');
-insert into movies values(3, '12-APR-2019', '12-MAY-2019', 'r');
-insert into movies values(4, '12-APR-2019', '12-MAY-2019', 'PG-13');
+insert into movie values(0, 26-APR-2019, 26-JUL-2019, 'pg-13');
+insert into movie values(3, 12-APR-2019, 12-MAY-2019, 'r');
+insert into movie values(4, 12-APR-2019, 12-MAY-2019, 'PG-13');
 
 insert into movie_schedule values(0, 0, 1, 10.00, 1, '26-APR-2019');
 insert into movie_schedule values(0, 1, 2, 10.30, 1, '26-APR-2019');
