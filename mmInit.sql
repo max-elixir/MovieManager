@@ -20,9 +20,9 @@ insert into movie_schedule values(1, 5, 2, 26-APR-2019 10.27, 1, 26-APR-2019);
 insert into movie_schedule values(1, 6, 3, 26-APR-2019 11.57, 1, 26-APR-2019);
 insert into movie_schedule values(3, 7, 2, 26-APR-2019 10.45, 0, 26-APR-2019);
 
-insert into ad values(0, 'Coca-Cola: summer vacation', 0.01, 0, 'coca-cola', 100.50);
-insert into ad values(1, 'lets all go to the lobby', 0.01, 1, 'theater', 0.0);
-insert into ad values(2, 'SA Film Festival', 0.01, 0, 'City of San Antonio', 20.00);
+insert into ad values(0, 'Coca-Cola: summer vacation', 0.01, 0, 'commercial', 'coca-cola', 100.50);
+insert into ad values(1, 'lets all go to the lobby', 0.01, 1, 'in-house', 'theater', 0.0);
+insert into ad values(2, 'SA Film Festival', 0.01, 0, 'commercial', 'City of San Antonio', 200.00);
 
 insert into ad_schedule values(0, 8, 9.56);
 insert into ad_schedule values(1, 9, 10.26);
