@@ -1,3 +1,0 @@
-0, Coca-Cola: summer vacation, 0.01, 0, commercial, coca-cola, 100.50
-1, lets all go to the lobby, 0.01, 1, in-house, theater, 0.0
-2, SA Film Festival, 0.01, 0, commercial, City of San Antonio, 20.00
