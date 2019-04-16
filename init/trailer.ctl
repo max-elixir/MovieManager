@@ -1,6 +1,0 @@
-LOAD DATA
-INFILE trailer.txt
-INSERT
-INTO TABLE trailer
-FIELDS TERMINATED BY "," OPTIONALLY ENCLOSED BY '"'
-(trailerId, band)
