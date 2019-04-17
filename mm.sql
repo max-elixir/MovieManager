@@ -4,14 +4,14 @@ create table film(
         runtime decimal(3,2) not null,
         filmtype char(7) not null,
         genre varchar2(25),
-        license_cost decimal (6,2) not null,
-        on delete cascade
+        license_cost decimal (6,2) not null
 );
 
 create table trailer(
         trailerId integer primary key,
         band varchar2(6) not null,
         foreign key(trailerId) references film(filmId)
+        on delete cascade        
 );
 
 create table movies(
@@ -20,6 +20,7 @@ create table movies(
         expiration_date Date not null,
         rating char(6) not null,
         foreign key (movieId) references film(filmId)
+        on delete cascade
 );
 
 create table movie_schedule(
@@ -28,7 +29,7 @@ create table movie_schedule(
         room_num integer not null,
         is_showing integer not null,
         start_time timestamp not null,
-        foreign key (filmId) references film(filmId),
+        foreign key (filmId) references film(filmId)
         on delete cascade
 );
 
@@ -48,16 +49,15 @@ create table ad(
         in_house integer not null,
         ad_type varchar2(12) not null,
         company varchar2(30),
-        profit decimal(6,2) not null,
-        on delete cascade
+        profit decimal(6,2) not null
 );
 
 create table ad_schedule(
         adId integer not null,
         screenId integer primary key,
         start_time timestamp,
-        foreign key(adId) references ad(adId),
-        foreign key(screenId) references movie_schedule(screenId)
+        foreign key(adId) references ad(adId) on delete cascade,
+        foreign key(screenId) references movie_schedule(screenId) on delete cascade
 );
 
 -- TODO encrypt passwords when using bcrypt --
@@ -67,13 +67,12 @@ create table users(
         password varchar2(30) not null,
         first_name varchar2(20),
         last_name varchar2(20),
-        role char(2),
-        on delete cascade
+        role char(2)
 );
 
 create table customer_tickets(
         custId integer primary key,
         screenId integer not null,
-        foreign key (custId) references users(id),
-        foreign key (screenID) references movie_schedule(screenId)
+        foreign key (custId) references users(id) on delete cascade,
+        foreign key (screenID) references movie_schedule(screenId) on delete cascade
 );
