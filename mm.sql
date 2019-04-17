@@ -46,7 +46,6 @@ create table ad(
         title varchar2(25) not null,
         runtime integer not null,
         in_house integer not null,
-        ad_type varchar2(12) not null,
         company varchar2(30),
         profit decimal(6,2) not null
 );
