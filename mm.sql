@@ -26,7 +26,7 @@ create table movie_schedule(
         screenId integer primary key,
         room_num integer not null,
         is_showing integer not null,
-        start_time decimal (4,2) not null,
+        start_time timestamp not null,
         foreign key (filmId) references film(filmId)
 );
 
@@ -43,7 +43,7 @@ create table ad(
 create table ad_schedule(
         adId integer not null,
         screenId integer primary key,
-        start_time decimal(4,2),
+        start_time timestamp,
         foreign key(adId) references ad(adId),
         foreign key(screenId) references movie_schedule(screenId)
 );
