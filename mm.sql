@@ -46,8 +46,8 @@ create table ad(
         title varchar2(25) not null,
         runtime integer not null,
         in_house tinyint not null,
-        company varchar2(30),
-        profit decimal(6,2) not null
+		profit decimal(6,2) not null
+        company varchar2(30)
 );
 
 create table ad_schedule(

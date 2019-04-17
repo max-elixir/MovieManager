@@ -1,10 +1,10 @@
-0, Coca-Cola: summer vacay, 0.01, 0, coca-cola, 2.00
-1, lets all go to the lobb, 0.01, 1, theater, 0.0
-2, SA Film Festival, 0.01, 0, City of San Antonio, 1.00
-3, theater rewards card, 0.01, 1, theater, 0.0
-4, new imax theater, 0.02, 1, theater, 0.0
-5, t roadhouse new meals, 0.01, 0, texas roadhouse, 1.50
-6, marvel fighting game, 0.01, 0, Marvel, 1.00
-7, Geico bike insurance, 0.01, 0, Geico, 0.50
-8, before the movie:aveng, 0.05, 0, BTM, 1.00
-9, leukemia story, 0.05, 0, St Jude, 0.50
+0, Coca-Cola: summer vacay, 0.01, 0, 2.00, coca-cola
+1, lets all go to the lobb, 0.01, 1, 0.0, theater
+2, SA Film Festival, 0.01, 0, 1.00, City of San Antonio
+3, theater rewards card, 0.01, 1, 0.0, theater
+4, new imax theater, 0.02, 1, 0.0, theater
+5, t roadhouse new meals, 0.01, 0, 1.50, texas roadhouse
+6, marvel fighting game, 0.01, 0, 1.00, Marvel
+7, Geico bike insurance, 0.01, 0, 0.50, Geico
+8, before the movie:aveng, 0.05, 0, 1.00, BTM
+9, leukemia story, 0.05, 0, 0.50, St Jude
