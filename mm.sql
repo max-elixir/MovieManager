@@ -4,7 +4,8 @@ create table film(
         runtime decimal(3,2) not null,
         filmtype char(7) not null,
         genre varchar2(25),
-        license_cost decimal (6,2) not null
+        license_cost decimal (6,2) not null,
+        on delete cascade
 );
 
 create table trailer(
@@ -26,8 +27,18 @@ create table movie_schedule(
         screenId integer primary key,
         room_num integer not null,
         is_showing integer not null,
-        start_time decimal (4,2) not null,
-        foreign key (filmId) references film(filmId)
+        start_time timestamp not null,
+        foreign key (filmId) references film(filmId),
+        on delete cascade
+);
+
+create table trailer_schedule(
+        trailerId integer not null,
+        screenId integer not null,
+        start_time timestamp not null,
+        foreign key trailerId references film(filmId),
+        foreign key screenId references movie_schedule(screenId),
+        constraint t_pk primary key(trailerId, screenId)
 );
 
 create table ad(
@@ -37,7 +48,8 @@ create table ad(
         in_house integer not null,
         ad_type varchar2(12) not null,
         company varchar2(30),
-        profit decimal(6,2) not null
+        profit decimal(6,2) not null,
+        on delete cascade
 );
 
 create table ad_schedule(
@@ -48,14 +60,15 @@ create table ad_schedule(
         foreign key(screenId) references movie_schedule(screenId)
 );
 
--- TODO encrypt passwords when using bcrypt
+-- TODO encrypt passwords when using bcrypt --
 create table users(
         id integer primary key,
         username varchar2(25) not null,
         password varchar2(30) not null,
         first_name varchar2(20),
         last_name varchar2(20),
-        role char(2)
+        role char(2),
+        on delete cascade
 );
 
 create table customer_tickets(
