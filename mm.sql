@@ -29,16 +29,15 @@ create table movie_schedule(
         room_num integer not null,
         is_showing integer not null,
         start_time timestamp not null,
-        foreign key (filmId) references film(filmId)
-        on delete cascade
+        foreign key (filmId) references film(filmId) on delete cascade
 );
 
 create table trailer_schedule(
         trailerId integer not null,
         screenId integer not null,
         start_time timestamp not null,
-        foreign key trailerId references film(filmId),
-        foreign key screenId references movie_schedule(screenId),
+        foreign key (trailerId) references film(filmId),
+        foreign key (screenId) references movie_schedule(screenId),
         constraint t_pk primary key(trailerId, screenId)
 );
 
