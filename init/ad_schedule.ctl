@@ -3,4 +3,4 @@ INFILE ad_schedule.txt
 APPEND
 INTO TABLE ad_schedule
 FIELDS TERMINATED BY "," OPTIONALLY ENCLOSED BY '"'
-(adId, screenId, start_time)
+(adId, screenId, start_time TIMESTAMP "DD-MON-YYYY hh24:mi")
