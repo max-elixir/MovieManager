@@ -39,7 +39,8 @@ create table trailer_schedule(
         start_time timestamp not null,
         foreign key (trailerId) references film(filmId),
         foreign key (screenId) references movie_schedule(screenId),
-        constraint t_pk primary key(trailerId, screenId)
+        constraint t_pk primary key(trailerId, screenId) 
+        on delete cascade
 );
 
 create table ad(
