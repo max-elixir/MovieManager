@@ -3,3 +3,12 @@
 2, Toy Story 4, 0.05, trailer, 50.00, Family
 3, Hellboy (2019), 2.0, movie, 200.00, action
 4, Little, 1.5, movie, 200.00, comedy
+5, Breakthrough, 1.93, movie, 200.00, Drama
+12, Penguins, 1.27, movie, 100.00, Documentary
+6, Missing Link, 1.51, movie, 150.00, Animated
+7, Pet Sematary, 1.68, movie, 200.00, Horror
+8, Shazam!, 2.2, movie, 250.00, superhero
+9, Dumbo(2019), 1,86, movie, 300.00, Family
+10, Us, 1.85, movie, 250.00, Horror
+11, Captain Marvel, 2.03, movie, 260.00, superhero
+13, GuardiansGalaxyVol3, 0.05, trailer, 60.00, superhero
