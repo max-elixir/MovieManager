@@ -3,8 +3,8 @@ create table film(
         title varchar2(25) not null,
         runtime decimal(3,2) not null,
         filmtype char(7) not null,
-        genre varchar2(25),
-        license_cost decimal (6,2) not null
+		license_cost decimal (6,2) not null,
+        genre varchar2(25)
 );
 
 create table trailer(
@@ -29,7 +29,8 @@ create table movie_schedule(
         room_num integer not null,
         is_showing integer not null,
         start_time timestamp not null,
-        foreign key (filmId) references film(filmId) on delete cascade
+        foreign key (filmId) references film(filmId) 
+		on delete cascade
 );
 
 create table trailer_schedule(
@@ -45,8 +46,8 @@ create table ad(
         adId integer primary key,
         title varchar2(25) not null,
         runtime integer not null,
-        in_house tinyint not null,
-		profit decimal(6,2) not null
+        in_house smallint not null,
+		profit decimal(6,2) not null,
         company varchar2(30)
 );
 
