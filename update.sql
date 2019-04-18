@@ -11,4 +11,4 @@ delete from movies where expiration_date <  to_date(sysdate);
 update movie set expiration_date+31 where movieId=0;
 
 --5 - Project #3 is broken, so cancel the movies in that theater for the day
-Update movie_schedule set is_showing=0 where room_num=3 and date='26-APR-2019';
+Update movie_schedule set is_showing=0 where room_num=3 and start_time>'26-APR-2019 01:00';
