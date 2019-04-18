@@ -29,10 +29,19 @@ where ms.room_num = 3 and f.filmtype='movie' and ms.start_time = (select current
 
 -- 7. Delete movies past the expiration date --
 delete from film f where f.filmId = (select m.movieId from movies m where 
-m.expiration_date < (select current_date from dual)
+m.expiration_date < (select current_date from dual))
 
 -- 8. Retrieve screenings with a total runtime longer than 2 hours --
+select screenId, room_num from movie_schedule ms 
+join ad_schedule ads on ms.screenId = ads.screenId
+join film f on f.filmId = ms.filmId 
+join trailer_schedule ts on ts.screenId = ms.screenId
+group by ms.screenId
+having sum(f.runtime) sum(select runtime from ad join ad_schedule ads on ad.adId=ads.adId))
 
 -- 9. Retrieve customer names that have visted at least one screening in the last month --
+select firstname, lastname form users u join customer_tickets ct on u.id=ct.custId group by ct.custId
+having count((select dateOfPurchase from customer_tickets where dateOfPurchase >= add_months(sysdate,-1))) <=1;
 
--- 10. --
+-- 10. Select the most profitable company ad--
+select company from ad group by company where sum(profit) = max(sum(profit));
