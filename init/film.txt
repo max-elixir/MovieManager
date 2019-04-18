@@ -8,7 +8,7 @@
 6, Missing Link, 1.51, movie, 150.00, animated
 7, Pet Sematary, 1.68, movie, 200.00, horror
 8, Shazam!, 2.2, movie, 250.00, superhero
-9, Dumbo(2019), 1,86, movie, 300.00, family
+9, Dumbo(2019), 1.86, movie, 300.00, family
 10, Us, 1.85, movie, 250.00, horror
 11, Captain Marvel, 2.03, movie, 260.00, superhero
 13, GuardiansGalaxyVol3, 0.05, trailer, 60.00, superhero
