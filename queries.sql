@@ -44,4 +44,4 @@ select firstname, lastname form users u join customer_tickets ct on u.id=ct.cust
 having count((select dateOfPurchase from customer_tickets where dateOfPurchase >= add_months(sysdate,-1))) <=1;
 
 -- 10. Select the most profitable company ad--
-select company from ad group by company where sum(profit) = max(sum(profit));
+select company from ad group by company having sum(profit) = (select max(sum(profit)) from ad group by company);
