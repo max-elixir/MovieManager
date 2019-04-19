@@ -1,0 +1,151 @@
+SQL> @migration.sql
+SP2-0310: unable to open file "migration.sql"
+SQL> @../migration.sql
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+SQL> @../mm.sql
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+SQL> !sqlldr control=film.ctl log=film.log bad=film.bad
+
+SQL> !sqlldr control=movies.ctl log=movies.log bad=movies.bad
+
+SQL> !sqlldr control=movie_schedule.ctl log=movie_schedule.log bad=movie_schedule.bad
+
+SQL> !sqlldr control=trailer.ctl log=trailer.log bad=trailer.bad
+
+SQL> !sqlldr control=trailer_schedule.ctl log=trailer_schedule.log bad=trailer_schedule.bad
+
+SQL> !sqlldr control=ad.ctl log=ad.log bad=ad.bad
+
+SQL> !sqlldr control=users.ctl log=users.log bad=users.bad
+
+SQL> !sqlldr control=customer_tickets.ctl log=customer_tickets.log bad=customer_tickets.bad
+
+SQL> describe film
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FILMID                                    NOT NULL NUMBER(38)
+ TITLE                                     NOT NULL VARCHAR2(25)
+ RUNTIME                                   NOT NULL NUMBER(3,2)
+ FILMTYPE                                  NOT NULL CHAR(7)
+ LICENSE_COST                              NOT NULL NUMBER(6,2)
+ GENRE                                              VARCHAR2(25)
+
+SQL> describe movies
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MOVIEID                                   NOT NULL NUMBER(38)
+ RELEASE_DATE                              NOT NULL DATE
+ EXPIRATION_DATE                           NOT NULL DATE
+ RATING                                    NOT NULL CHAR(6)
+
+SQL> describe movie_schedule
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FILMID                                    NOT NULL NUMBER(38)
+ SCREENID                                  NOT NULL NUMBER(38)
+ ROOM_NUM                                  NOT NULL NUMBER(38)
+ IS_SHOWING                                NOT NULL NUMBER(38)
+ START_TIME                                NOT NULL TIMESTAMP(6)
+
+SQL> movie trailer
+SP2-0734: unknown command beginning "movie trai..." - rest of line ignored.
+SQL> describe trailer
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TRAILERID                                 NOT NULL NUMBER(38)
+ BAND                                      NOT NULL VARCHAR2(6)
+
+SQL> describe trailer_schedule
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TRAILERID                                 NOT NULL NUMBER(38)
+ SCREENID                                  NOT NULL NUMBER(38)
+ START_TIME                                NOT NULL TIMESTAMP(6)
+
+SQL> describe ad
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ADID                                      NOT NULL NUMBER(38)
+ TITLE                                     NOT NULL VARCHAR2(25)
+ RUNTIME                                   NOT NULL NUMBER(38)
+ IN_HOUSE                                  NOT NULL NUMBER(38)
+ PROFIT                                    NOT NULL NUMBER(6,2)
+ COMPANY                                            VARCHAR2(30)
+
+SQL> describe ad_schedule
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ADID                                      NOT NULL NUMBER(38)
+ SCREENID                                  NOT NULL NUMBER(38)
+ START_TIME                                         TIMESTAMP(6)
+
+SQL> describe users
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(38)
+ USERNAME                                  NOT NULL VARCHAR2(25)
+ PASSWORD                                  NOT NULL VARCHAR2(30)
+ FIRST_NAME                                         VARCHAR2(20)
+ LAST_NAME                                          VARCHAR2(20)
+ ROLE                                               CHAR(2)
+
+SQL> describe customer_tickets
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTID                                    NOT NULL NUMBER(38)
+ SCREENID                                  NOT NULL NUMBER(38)
+ DATEOFPURCHASE                            NOT NULL TIMESTAMP(6)
+
+SQL> spool off
