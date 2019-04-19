@@ -23,24 +23,25 @@ select sum(license_cost) from film f where genre = 'superhero' group by genre;
 select title from film f join movies m on f.filmId = m.movieId
 where m.release_date < '01-APR-19' and m.rating = 'R';
 
+-- FAIL --
 -- 6. Retrieve all movies playing in room 3 today --
 select title from film f join movie_schedule ms on f.filmId = ms.filmId 
-where ms.room_num = 3 and f.filmtype='movie' and ms.start_time = (select current_date from dual);
+where ms.room_num = 3 and f.filmtype='movie' and 
+to_char(cast(ms.start_time as date), 'DD-MM-YYYY') = (select current_date from dual);
 
 -- 7. Delete movies past the expiration date --
 delete from film f where f.filmId = (select m.movieId from movies m where 
-m.expiration_date < (select current_date from dual))
+to_char(m.expiration_date, 'DD-MM-YYYY') < (select current_date from dual))
 
--- 8. Retrieve screenings with a total runtime longer than 2 hours --
-select screenId, room_num from movie_schedule ms 
-join ad_schedule ads on ms.screenId = ads.screenId
-join film f on f.filmId = ms.filmId 
-join trailer_schedule ts on ts.screenId = ms.screenId
-group by ms.screenId
-having sum(f.runtime) sum(select runtime from ad join ad_schedule ads on ad.adId=ads.adId))
+-- 8. Retrieve the id's of trailers and ads playing in room 2 --
+select trailerId, screenId from trailer_schedule ts
+join movie_schedule ms on ms.screenId=ts.screenId where ms.room_num=2
+union
+select adId, screenId from ad_schedule ads
+join movie_schedule ms1 on ms1.screenId=ads.screenId where ms1.room_num=2;
 
 -- 9. Retrieve customer names that have visted at least one screening in the last month --
-select firstname, lastname form users u join customer_tickets ct on u.id=ct.custId group by ct.custId
+select first_name,last_name from users u join customer_tickets ct on u.id=ct.custId group by ct.custId
 having count((select dateOfPurchase from customer_tickets where dateOfPurchase >= add_months(sysdate,-1))) <=1;
 
 -- 10. Select the most profitable company ad--
