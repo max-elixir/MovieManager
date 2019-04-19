@@ -3,7 +3,7 @@ create table film(
         title varchar2(25) not null,
         runtime decimal(3,2) not null,
         filmtype char(7) not null,
-	license_cost decimal (6,2) not null,
+		license_cost decimal (6,2) not null,
         genre varchar2(25)
 );
 
