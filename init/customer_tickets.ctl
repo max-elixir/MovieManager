@@ -3,4 +3,4 @@ INFILE customer_tickets.txt
 APPEND
 INTO TABLE customer_tickets
 FIELDS TERMINATED BY "," OPTIONALLY ENCLOSED BY '"'
-(custId, screenId)
+(custId, screenId, dateOfPurchase)
