@@ -1,6 +1,4 @@
 #!/bin/bash
-set user="hwt460"
-set pass="01592719"
 
 # load films
 sqlldr control=film.ctl log=film.log bad=film.bad
@@ -8,14 +6,14 @@ sqlldr control=film.ctl log=film.log bad=film.bad
 # load movies
 sqlldr control=movies.ctl log=movies.log bad=movies.bad
 
+# load movie_schedule
+sqlldr control=movie_schedule.ctl log=movie_schedule.log bad=movie_schedule.bad
+
 # load trailer
 sqlldr control=trailer.ctl log=trailer.log bad=trailer.bad
 
 # load trailer schedules
 sqlldr control=trailer_schedule.ctl log=trailer_schedule.log bad=trailer_schedule.bad
-
-# load movie_schedule
-sqlldr control=movie_schedule.ctl log=movie_schedule.log bad=movie_schedule.bad
 
 # load ad's
 sqlldr control=ad.ctl log=ad.log bad=ad.bad
