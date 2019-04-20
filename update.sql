@@ -8,7 +8,7 @@ delete from ad where title = 'SA Film Festival';
 delete from movies where expiration_date <  to_date(sysdate);
 
 --4 The theater is keeping a particular movie for an extra month
-update movie set expiration_date=expiration_date+31 where movieId=0;
+update movies set expiration_date=expiration_date+31 where movieId=0;
 
 --5 - Project #3 is broken, so cancel the movies in that theater for the day
 Update movie_schedule set is_showing=0 where room_num=3 and start_time>'26-APR-2019 01:00';
