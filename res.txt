@@ -1,0 +1,489 @@
+SQL> @queries
+
+TITLE                                                                           
+-------------------------                                                       
+Avengers: Endgame                                                               
+Hellboy (2019)                                                                  
+Little                                                                          
+Pet Sematary                                                                    
+Shazam!                                                                         
+Us                                                                              
+Captain Marvel                                                                  
+Deadpool                                                                        
+Logan                                                                           
+It                                                                              
+The Matrix                                                                      
+
+11 rows selected.
+
+
+TITLE                                                                           
+-------------------------                                                       
+Hellboy (2019)                                                                  
+Little                                                                          
+Breakthrough                                                                    
+Penguins                                                                        
+Missing Link                                                                    
+Pet Sematary                                                                    
+Shazam!                                                                         
+Dumbo(2019)                                                                     
+Us                                                                              
+Captain Marvel                                                                  
+
+10 rows selected.
+
+
+1 row created.
+
+
+ TOTALCOST                                                                      
+----------                                                                      
+       920                                                                      
+
+
+TITLE                                                                           
+-------------------------                                                       
+Us                                                                              
+Deadpool                                                                        
+Logan                                                                           
+It                                                                              
+The Matrix                                                                      
+
+
+TITLE                                                                           
+-------------------------                                                       
+Captain Marvel                                                                  
+Dumbo(2019)                                                                     
+Shazam!                                                                         
+
+
+11 rows deleted.
+
+
+ TRAILERID   SCREENID                                                           
+---------- ----------                                                           
+         0          1                                                           
+         0          7                                                           
+         1          1                                                           
+         1          7                                                           
+         2          5                                                           
+
+
+FIRST_NAME           LAST_NAME                                                  
+-------------------- --------------------                                       
+Max                  Guzman                                                     
+Brad                 Smith                                                      
+Henry                Mendez                                                     
+Amy                  Solis                                                      
+
+
+COMPANY                                                                         
+------------------------------                                                  
+coca-cola                                                                       
+
+SQL> select * from users;
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+         0 max_elixir                blue12345                                  
+Max                  Guzman               SA                                    
+                                                                                
+         1 buitrago                  groupLeader1                               
+Isaac                Buitrago             SA                                    
+                                                                                
+         2 jason-kha                 yoshi                                      
+Jason                Kha                  SA                                    
+                                                                                
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+         3 bsmith                    bigboss                                    
+Brad                 Smith                O                                     
+                                                                                
+         4 hmendez                   yugioh                                     
+Henry                Mendez               M                                     
+                                                                                
+         5 asolis                    coolmom                                    
+Amy                  Solis                M                                     
+                                                                                
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+         6 rotiz                     bigknife                                   
+Roman                Ortiz                M                                     
+                                                                                
+         7 pochoa                    yeahthatsfine                              
+Paul                 Ochoa                M                                     
+                                                                                
+         8 user                      password                                   
+john                 doe                  C                                     
+                                                                                
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+         9 username                  password                                   
+jane                 doe                  C                                     
+                                                                                
+        10 Markiplier                mustache                                   
+Mark                 Fishbach             C                                     
+                                                                                
+        11 rslavin                   systems                                    
+Rocky                Slavin               C                                     
+                                                                                
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+        12 lclark                    readthenotes                               
+Larry                Clark                C                                     
+                                                                                
+
+13 rows selected.
+
+SQL> select * from ad;
+
+      ADID TITLE                        RUNTIME   IN_HOUSE     PROFIT           
+---------- ------------------------- ---------- ---------- ----------           
+COMPANY                                                                         
+------------------------------                                                  
+         0 Coca-Cola: summer vacay            0          0          2           
+coca-cola                                                                       
+                                                                                
+         1 lets all go to the lobb            0          1          0           
+theater                                                                         
+                                                                                
+         2 SA Film Festival                   0          0          1           
+City of San Antonio                                                             
+                                                                                
+
+      ADID TITLE                        RUNTIME   IN_HOUSE     PROFIT           
+---------- ------------------------- ---------- ---------- ----------           
+COMPANY                                                                         
+------------------------------                                                  
+         3 theater rewards card               0          1          0           
+theater                                                                         
+                                                                                
+         4 new imax theater                   0          1          0           
+theater                                                                         
+                                                                                
+         5 t roadhouse new meals              0          0        1.5           
+texas roadhouse                                                                 
+                                                                                
+
+      ADID TITLE                        RUNTIME   IN_HOUSE     PROFIT           
+---------- ------------------------- ---------- ---------- ----------           
+COMPANY                                                                         
+------------------------------                                                  
+         6 marvel fighting game               0          0          1           
+Marvel                                                                          
+                                                                                
+         7 Geico bike insurance               0          0         .5           
+Geico                                                                           
+                                                                                
+         8 before the movie:aveng             0          0          1           
+BTM                                                                             
+                                                                                
+
+      ADID TITLE                        RUNTIME   IN_HOUSE     PROFIT           
+---------- ------------------------- ---------- ---------- ----------           
+COMPANY                                                                         
+------------------------------                                                  
+         9 leukemia story                     0          0         .5           
+St Jude                                                                         
+                                                                                
+
+10 rows selected.
+
+SQL> select * from movies;
+
+   MOVIEID RELEASE_D EXPIRATIO RATING                                           
+---------- --------- --------- ------                                           
+         0 26-APR-19 26-JUL-19 PG-13                                            
+         3 12-APR-19 12-MAY-19 R                                                
+         4 12-APR-19 12-MAY-19 PG-13                                            
+         5 17-APR-19 17-MAY-19 PG                                               
+         6 12-APR-19 12-MAY-19 PG                                               
+         7 05-APR-19 05-MAY-19 R                                                
+         8 05-APR-19 05-MAY-19 PG-13                                            
+         9 29-MAR-19 29-APR-19 PG                                               
+        10 22-MAR-19 22-APR-19 R                                                
+        11 08-MAR-19 30-APR-19 PG-13                                            
+        12 17-APR-19 17-MAY-19 G                                                
+
+11 rows selected.
+
+SQL> select * from movie_schedule;
+
+    FILMID   SCREENID   ROOM_NUM IS_SHOWING                                     
+---------- ---------- ---------- ----------                                     
+START_TIME                                                                      
+---------------------------------------------------------------------------     
+         0          0          1          1                                     
+26-APR-19 10.00.00.000000 AM                                                    
+                                                                                
+         0          1          2          1                                     
+26-APR-19 10.30.00.000000 AM                                                    
+                                                                                
+         0          2          3          1                                     
+26-APR-19 12.00.00.000000 PM                                                    
+                                                                                
+
+    FILMID   SCREENID   ROOM_NUM IS_SHOWING                                     
+---------- ---------- ---------- ----------                                     
+START_TIME                                                                      
+---------------------------------------------------------------------------     
+         0          3          1          1                                     
+26-APR-19 02.00.00.000000 PM                                                    
+                                                                                
+         1          4          1          1                                     
+26-APR-19 09.57.00.000000 AM                                                    
+                                                                                
+         1          5          2          1                                     
+26-APR-19 10.27.00.000000 AM                                                    
+                                                                                
+
+    FILMID   SCREENID   ROOM_NUM IS_SHOWING                                     
+---------- ---------- ---------- ----------                                     
+START_TIME                                                                      
+---------------------------------------------------------------------------     
+         1          6          3          1                                     
+26-APR-19 11.57.00.000000 AM                                                    
+                                                                                
+         3          7          2          0                                     
+26-APR-19 10.45.00.000000 AM                                                    
+                                                                                
+        11          8          3          0                                     
+18-APR-19 10.30.00.000000 AM                                                    
+                                                                                
+
+    FILMID   SCREENID   ROOM_NUM IS_SHOWING                                     
+---------- ---------- ---------- ----------                                     
+START_TIME                                                                      
+---------------------------------------------------------------------------     
+         9          9          3          0                                     
+18-APR-19 12.30.00.000000 PM                                                    
+                                                                                
+         8         10          3          0                                     
+18-APR-19 05.30.00.000000 AM                                                    
+                                                                                
+
+11 rows selected.
+
+SQL> @update
+
+1 row created.
+
+
+1 row deleted.
+
+
+0 rows deleted.
+
+
+1 row updated.
+
+
+2 rows updated.
+
+SQL> select * from users;
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+         0 max_elixir                blue12345                                  
+Max                  Guzman               SA                                    
+                                                                                
+         1 buitrago                  groupLeader1                               
+Isaac                Buitrago             SA                                    
+                                                                                
+         2 jason-kha                 yoshi                                      
+Jason                Kha                  SA                                    
+                                                                                
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+         3 bsmith                    bigboss                                    
+Brad                 Smith                O                                     
+                                                                                
+         4 hmendez                   yugioh                                     
+Henry                Mendez               M                                     
+                                                                                
+         5 asolis                    coolmom                                    
+Amy                  Solis                M                                     
+                                                                                
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+         6 rotiz                     bigknife                                   
+Roman                Ortiz                M                                     
+                                                                                
+         7 pochoa                    yeahthatsfine                              
+Paul                 Ochoa                M                                     
+                                                                                
+         8 user                      password                                   
+john                 doe                  C                                     
+                                                                                
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+         9 username                  password                                   
+jane                 doe                  C                                     
+                                                                                
+        10 Markiplier                mustache                                   
+Mark                 Fishbach             C                                     
+                                                                                
+        11 rslavin                   systems                                    
+Rocky                Slavin               C                                     
+                                                                                
+
+        ID USERNAME                  PASSWORD                                   
+---------- ------------------------- ------------------------------             
+FIRST_NAME           LAST_NAME            RO                                    
+-------------------- -------------------- --                                    
+        12 lclark                    readthenotes                               
+Larry                Clark                C                                     
+                                                                                
+        42 newuser                   badpassword                                
+no                   name                 C                                     
+                                                                                
+
+14 rows selected.
+
+SQL> select * from ad;
+
+      ADID TITLE                        RUNTIME   IN_HOUSE     PROFIT           
+---------- ------------------------- ---------- ---------- ----------           
+COMPANY                                                                         
+------------------------------                                                  
+         0 Coca-Cola: summer vacay            0          0          2           
+coca-cola                                                                       
+                                                                                
+         1 lets all go to the lobb            0          1          0           
+theater                                                                         
+                                                                                
+         3 theater rewards card               0          1          0           
+theater                                                                         
+                                                                                
+
+      ADID TITLE                        RUNTIME   IN_HOUSE     PROFIT           
+---------- ------------------------- ---------- ---------- ----------           
+COMPANY                                                                         
+------------------------------                                                  
+         4 new imax theater                   0          1          0           
+theater                                                                         
+                                                                                
+         5 t roadhouse new meals              0          0        1.5           
+texas roadhouse                                                                 
+                                                                                
+         6 marvel fighting game               0          0          1           
+Marvel                                                                          
+                                                                                
+
+      ADID TITLE                        RUNTIME   IN_HOUSE     PROFIT           
+---------- ------------------------- ---------- ---------- ----------           
+COMPANY                                                                         
+------------------------------                                                  
+         7 Geico bike insurance               0          0         .5           
+Geico                                                                           
+                                                                                
+         8 before the movie:aveng             0          0          1           
+BTM                                                                             
+                                                                                
+         9 leukemia story                     0          0         .5           
+St Jude                                                                         
+                                                                                
+
+9 rows selected.
+
+SQL> select * from movies;
+
+   MOVIEID RELEASE_D EXPIRATIO RATING                                           
+---------- --------- --------- ------                                           
+         0 26-APR-19 26-JUL-19 PG-13                                            
+         3 12-APR-19 12-JUN-19 R                                                
+         4 12-APR-19 12-MAY-19 PG-13                                            
+         5 17-APR-19 17-MAY-19 PG                                               
+         6 12-APR-19 12-MAY-19 PG                                               
+         7 05-APR-19 05-MAY-19 R                                                
+         8 05-APR-19 05-MAY-19 PG-13                                            
+         9 29-MAR-19 29-APR-19 PG                                               
+        10 22-MAR-19 22-APR-19 R                                                
+        11 08-MAR-19 30-APR-19 PG-13                                            
+        12 17-APR-19 17-MAY-19 G                                                
+
+11 rows selected.
+
+SQL> select * from movie_schedule;
+
+    FILMID   SCREENID   ROOM_NUM IS_SHOWING                                     
+---------- ---------- ---------- ----------                                     
+START_TIME                                                                      
+---------------------------------------------------------------------------     
+         0          0          1          1                                     
+26-APR-19 10.00.00.000000 AM                                                    
+                                                                                
+         0          1          2          1                                     
+26-APR-19 10.30.00.000000 AM                                                    
+                                                                                
+         0          2          3          0                                     
+26-APR-19 12.00.00.000000 PM                                                    
+                                                                                
+
+    FILMID   SCREENID   ROOM_NUM IS_SHOWING                                     
+---------- ---------- ---------- ----------                                     
+START_TIME                                                                      
+---------------------------------------------------------------------------     
+         0          3          1          1                                     
+26-APR-19 02.00.00.000000 PM                                                    
+                                                                                
+         1          4          1          1                                     
+26-APR-19 09.57.00.000000 AM                                                    
+                                                                                
+         1          5          2          1                                     
+26-APR-19 10.27.00.000000 AM                                                    
+                                                                                
+
+    FILMID   SCREENID   ROOM_NUM IS_SHOWING                                     
+---------- ---------- ---------- ----------                                     
+START_TIME                                                                      
+---------------------------------------------------------------------------     
+         1          6          3          0                                     
+26-APR-19 11.57.00.000000 AM                                                    
+                                                                                
+         3          7          2          0                                     
+26-APR-19 10.45.00.000000 AM                                                    
+                                                                                
+        11          8          3          0                                     
+18-APR-19 10.30.00.000000 AM                                                    
+                                                                                
+
+    FILMID   SCREENID   ROOM_NUM IS_SHOWING                                     
+---------- ---------- ---------- ----------                                     
+START_TIME                                                                      
+---------------------------------------------------------------------------     
+         9          9          3          0                                     
+18-APR-19 12.30.00.000000 PM                                                    
+                                                                                
+         8         10          3          0                                     
+18-APR-19 05.30.00.000000 AM                                                    
+                                                                                
+
+11 rows selected.
+
+SQL> spool off
