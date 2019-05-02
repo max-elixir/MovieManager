@@ -1,0 +1,1 @@
+function get_end_time(start in timestamp, length in decimal(3,2))
