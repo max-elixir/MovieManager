@@ -3,7 +3,7 @@ create or replace package body movie_manager as
     (today in varchar2 default to_char(SYSDATE,'DD-MON-YYYY')) is
   cursor sched is
     select f.title, f.genre, f.runtime, m.rating, ms.room_num, 
-    to_char(ms.start_time, 'hh.mi AM') start_time
+    to_char(ms.start_time, 'hh:mi AM') start_time
     from film f join movies m on f.filmId = m.movieId 
     join movie_schedule ms on m.movieId = ms.filmId 
     where TRUNC(ms.start_time) = TO_DATE(today, 'DD-MON-YY');
