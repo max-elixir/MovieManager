@@ -69,7 +69,8 @@ create table users(
 );
 
 create table customer_tickets(
-        custId integer primary key,
+        purchaseId integer primary key,
+        custId integer not null,
         screenId integer not null,
         dateOfPurchase timestamp not null,
         foreign key (custId) references users(id) on delete cascade,
