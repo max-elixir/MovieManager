@@ -1,14 +1,16 @@
 create or replace package body movie_manager as
   procedure get_schedule
     (today in varchar2 default to_char(SYSDATE,'DD-MON-YYYY')) is
-  cursor sched is
-    select f.title, f.genre, f.runtime, m.rating, ms.room_num, 
-    to_char(ms.start_time, 'hh:mi AM') start_time
-    from film f join movies m on f.filmId = m.movieId 
-    join movie_schedule ms on m.movieId = ms.filmId 
-    where TRUNC(ms.start_time) = TO_DATE(today, 'DD-MON-YY');
 
-  sched_rec sched%rowtype;
+    cursor sched is 
+      select f.title, f.genre, f.runtime, m.rating, ms.room_num, 
+      to_char(ms.start_time, 'hh:mi AM') start_time
+      from film f join movies m on f.filmId = m.movieId 
+      join movie_schedule ms on m.movieId = ms.filmId 
+      where TRUNC(ms.start_time) = TO_DATE(today, 'DD-MON-YYYY');
+
+    sched_rec sched%rowtype;
+
   begin
     open sched;
     fetch sched into sched_rec;
@@ -23,6 +25,10 @@ create or replace package body movie_manager as
       fetch sched into sched_rec;
     end loop;
     close sched;
+
+    exception
+      when others then
+        dbms_output.put_line('Invalid date, please try again.');
   end;
 end;
 /
