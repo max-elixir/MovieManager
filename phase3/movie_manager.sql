@@ -1,4 +1,6 @@
 create or replace package body movie_manager as
+
+-- Used to print the schedule of movies for a given day --
   procedure get_schedule
     (today in varchar2 default to_char(SYSDATE,'DD-MON-YYYY')) is
     cursor sched is 
@@ -30,23 +32,84 @@ create or replace package body movie_manager as
         dbms_output.put_line('Invalid date, please try again.');
   end;
 
-procedure schedule_trailer (trailer in varchar2, screenId in integer, st in varchar2) is
+-- Used to schedule a trailer for a given movie --
+procedure schedule_trailer (trailerTitle in varchar2, screenId in integer, st in varchar2) is
   cursor pre_sched is 
-    get_pre_schedule(screenId);
+    select * from table(get_pre_schedule(screenId));
 
   trailerId integer;
-  begin
-    trailerId:= select t.filmId from trailer t, film f where t.title = trailer and f.filmtype = 'trailer';
+  start_time timestamp;
 
-    insert into trailer_schedule (trailerId, screenId, start_time) values(
-    ,
-    (select screenId from movie_schedule ms join film f on f.filmId = ms.filmId
-    where f.title = 'Hellboy (2019)' and f.filmtype = 'movie'),
-    (select current_timestamp from dual) - 1);
+  begin
+    declare
+      invalid_time_slot exception;
+
+    trailerId:= select t.filmId from trailer t, film f where t.title = trailerTitle and f.filmtype = 'trailer';
+    start_time:= to_timestamp(st, 'HH:MI:SS AM');
+
+    if(start_time in pre_sched)
+      raise invalid_time_slot;
+
+    insert into trailer_schedule (trailerId, screenId, start_time) values(trailerId, screenId, start_time);
+
+    exception
+      when no_data_found then
+        dbms_output.put_line('Trailer with title ' || trailerTitle || ' exists.');
+      
+      when invalid_time_slot then
+        dbms_output.put_line('Time slot of ' || start_time || ' has is taken.');
+
+      when others then
+        dbms_output.put_line('Invalid time stamp.');
+
   end;
 
-function get_pre_schedule(screenId in integer)
-return 
+-- define a record type for trailers and ad's --
+create or replace type t_record as object (
+  tile film.title%type,
+  start_time trailer_schedule.start_time%type,
+  end_time trailer_schedule.start_time%type,
+  room_num movie_schedule.room_num%type
+);
+
+-- define table type for pre-schedule function --
+create or replace type t_table as table of t_record;
+
+-- Used to get shcedule for the pre-screening --
+function get_pre_schedule(screenId in movie_schedule.screenId%type) 
+  return t_table as v_ret t_table;
+
+  cursor pre_screening_items is
+      (select f.title, f.runtime, ts.start_time from trailer_schedule ts join film f 
+      on ts.filmId = f.filmId join movie_schedule ms on ts.screenId = ms.screenId)
+      union
+      (select ad.title, ad.runtime, ad_sched.start_time 
+      from ad_schedule ad_sched 
+      join ad on ad.adId = ad_sched.adId 
+      join movie_schedule ms on ms.screenId = ad_sched.screenId);
+    
+  declare
+    pre_sched pre_screening_items%rowtype;
+      
+  begin
+    v_ret:= t_table();
+
+    open pre_screening_items;
+    fetch pre_screening_items into pre_sched;
+
+    while pre_screening_items%found loop
+      v_ret.extend; v_ret() := t_record(pre_sched.title,
+      pre_sched.start_time, 
+      get_endtime(pre_sched.start_time, pre_sched.runtime),
+      pre_sched.room_num
+      );
+      fetch pre_screening_items into pre_sched;
+      end loop;
+    close pre_screening_items;
+
+      
+        
+  end get_pre_schedule;
 
 /
 show errors
