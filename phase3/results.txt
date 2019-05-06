@@ -1,0 +1,106 @@
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+Schedule for 26-APR-2019
+Title | Genre | Rating | Start Time | End Time | Room Number
+Invalid date, please try again.
+
+PL/SQL procedure successfully completed.
+
+Invalid date, please try again.
+
+PL/SQL procedure successfully completed.
+
+__Title__
+| Spiderman: Far From Home |
+| Toy Story 4 |
+| GuardiansGalaxyVol3 |
+
+PL/SQL procedure successfully completed.
+
+Title | Start Time | Endtime | Room Number
+Coca-Cola: summer vacay | 09:50 AM | 09:50 | 2
+Coca-Cola: summer vacay | 07:32 PM | 19:32 | 2
+SA Film Festival | 09:26 AM | 09:26 | 2
+SA Film Festival | 03:23 PM | 15:23 | 2
+Toy Story 4 | 12:00 AM | 00:00 | 1
+Toy Story 4 | 12:00 AM | 00:00 | 2
+Toy Story 4 | 12:00 AM | 00:00 | 3
+lets all go to the lobb | 09:26 AM | 09:26 | 2
+lets all go to the lobb | 10:32 AM | 10:32 | 2
+lets all go to the lobb | 12:12 PM | 12:12 | 2
+
+PL/SQL procedure successfully completed.
+
+01-MAY-19 12.00.00.000000 AM
+"Toy Story 4" succesfully scheduled !
+Title | Start Time | Endtime | Room Number
+Coca-Cola: summer vacay | 09:50 AM | 09:50 | 2
+Coca-Cola: summer vacay | 07:32 PM | 19:32 | 2
+SA Film Festival | 09:26 AM | 09:26 | 2
+SA Film Festival | 03:23 PM | 15:23 | 2
+Toy Story 4 | 12:00 AM | 00:00 | 1
+Toy Story 4 | 12:00 AM | 00:00 | 2
+Toy Story 4 | 12:00 AM | 00:00 | 3
+lets all go to the lobb | 09:26 AM | 09:26 | 2
+lets all go to the lobb | 10:32 AM | 10:32 | 2
+lets all go to the lobb | 12:12 PM | 12:12 | 2
+
+PL/SQL procedure successfully completed.
+
+Title | Start Time | Endtime | Room Number
+Coca-Cola: summer vacay | 09:50 AM | 09:50 | 2
+Coca-Cola: summer vacay | 07:32 PM | 19:32 | 2
+SA Film Festival | 09:26 AM | 09:26 | 2
+SA Film Festival | 03:23 PM | 15:23 | 2
+Toy Story 4 | 12:00 AM | 00:00 | 1
+Toy Story 4 | 12:00 AM | 00:00 | 2
+Toy Story 4 | 12:00 AM | 00:00 | 3
+lets all go to the lobb | 09:26 AM | 09:26 | 2
+lets all go to the lobb | 10:32 AM | 10:32 | 2
+lets all go to the lobb | 12:12 PM | 12:12 | 2
+
+PL/SQL procedure successfully completed.
+
+Screen Id | Title | Start Time
+| 0 | Avengers: Endgame | 10:00 AM
+| 1 | Avengers: Endgame | 10:30 AM
+| 2 | Avengers: Endgame | 12:00 PM
+| 3 | Avengers: Endgame | 02:00 PM
+| 4 | Spiderman: Far From Home | 09:57 AM
+| 5 | Spiderman: Far From Home | 10:27 AM
+| 6 | Spiderman: Far From Home | 11:57 AM
+| 7 | Hellboy (2019) | 10:45 AM
+| 10 | Shazam! | 05:30 AM
+| 9 | Dumbo(2019) | 12:30 PM
+| 8 | Captain Marvel | 10:30 AM
+
+PL/SQL procedure successfully completed.
+
+Title | Start Time | Endtime | Room Number
+Coca-Cola: summer vacay | 09:50 AM | 09:50 | 2
+Coca-Cola: summer vacay | 07:32 PM | 19:32 | 2
+SA Film Festival | 09:26 AM | 09:26 | 2
+SA Film Festival | 03:23 PM | 15:23 | 2
+Spiderman: Far From Home | 12:35 PM | 12:35 | 1
+Spiderman: Far From Home | 12:35 PM | 12:35 | 2
+Spiderman: Far From Home | 12:35 PM | 12:35 | 3
+lets all go to the lobb | 09:26 AM | 09:26 | 2
+lets all go to the lobb | 10:32 AM | 10:32 | 2
+lets all go to the lobb | 12:12 PM | 12:12 | 2
+
+PL/SQL procedure successfully completed.
+
+Total Ad profit for APR 2019 is: $6
+
+PL/SQL procedure successfully completed.
+
+Successfully reserved ticket on 06-MAY-19
+
+PL/SQL procedure successfully completed.
+
