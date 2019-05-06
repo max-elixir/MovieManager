@@ -1,7 +1,7 @@
 create or replace package body movie_manager as
 
 -- Used to print the schedule of movies for a given day --
-  procedure get_schedule
+  create or replace procedure get_schedule
     (today in varchar2 default to_char(SYSDATE,'DD-MON-YYYY')) is
     cursor sched is 
       select f.title, f.genre, f.runtime, m.rating, ms.room_num, 
@@ -36,7 +36,7 @@ create or replace package body movie_manager as
 -- trailerTitle is title of trailer to schedual --
 -- screenId is unique movie screening  --
 -- st is start_time of trailer in HH:Mi:SS AM format --
-procedure schedule_trailer (trailerTitle in varchar2, screenId in integer, st in varchar2) is
+create or replace procedure schedule_trailer (trailerTitle in varchar2, screenId in integer, st in varchar2) is
   cursor pre_sched is 
     select * from table(get_pre_schedule(screenId));
 
@@ -79,7 +79,7 @@ procedure schedule_trailer (trailerTitle in varchar2, screenId in integer, st in
   end;
 
 -- define a record type for trailers and ad's --
-create or replace type t_record as object (
+type t_record is record(
   tile film.title%type,
   start_time trailer_schedule.start_time%type,
   end_time trailer_schedule.start_time%type,
@@ -87,7 +87,7 @@ create or replace type t_record as object (
 );
 
 -- define table type for pre-schedule function --
-create or replace type t_table as table of t_record;
+type t_table is table of t_record;
 
 -- Used to get shcedule for the pre-screening --
 -- screenId is id of unique movie screening --
@@ -124,7 +124,7 @@ function get_pre_schedule(screenId in movie_schedule.screenId%type)
     close pre_screening_items;
 
     return v_ret;     
-  end get_pre_schedule;
+  end;
 
 --                                Jason's code                                      --
     -- get_profit
@@ -251,9 +251,7 @@ function get_pre_schedule(screenId in movie_schedule.screenId%type)
         when screenIdNotExist then
             dbms_output.put_line('Error: ScreenId does not exist: ' || screenId);
     end;
---                                          End of Jason's code                         --
-
 end;
-
+--                                          End of Jason's code                         --
 /
 show errors
