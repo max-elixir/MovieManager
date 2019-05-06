@@ -37,7 +37,7 @@ create or replace package body movie_manager as
 
     while sched%found loop
       dbms_output.put_line(
-        sched_rec.title||'|'||sched_rec.genre||'|'||sched_rec.rating||'|'||sched_rec.start_time||'|'||'|'||sched_rec.room_num);
+        sched_rec.title||'|'||sched_rec.genre||'|'||sched_rec.rating||'|'||sched_rec.start_time||'|'||get_endtime(sched_rec.start_time, sched_rec.runtime)||' | '||sched_rec.room_num);
 
       fetch sched into sched_rec;
     end loop;
@@ -63,7 +63,6 @@ create or replace package body movie_manager as
     startTime timestamp;
 
     rec2 trailer%rowtype;
-    rec3 movieStartTime%rowtype;
 
     begin
 
