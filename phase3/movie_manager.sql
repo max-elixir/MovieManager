@@ -57,73 +57,33 @@ create or replace package body movie_manager as
   -- screenId is unique movie screening  --
   -- st is start_time of trailer in HH:Mi:SS AM format --
   procedure schedule_trailer (trailerTitle in varchar2, screenId in integer, st in varchar2) is
-    cursor pre_sched is 
-      select ts.start_time from trailer_schedule ts where ts.screenId = screenId
-      union
-      select ad_sched.start_time from ad_schedule ad_sched where ad_sched.screenId = screenId;
-
     cursor trailer is
       select t.trailerId from trailer t join film f on t.trailerId=f.filmId where f.title = trailerTitle;
 
-    cursor movieStartTime is
-      select start_time from movie_schedule ms where ms.screenId=screenId;
-
     startTime timestamp;
-    invalid_time_slot exception;
-    over_time_slot exception;
 
-    rec1 pre_sched%rowtype;
     rec2 trailer%rowtype;
     rec3 movieStartTime%rowtype;
 
     begin
 
       -- open all cursors --
-      -- open pre_sched;
-      -- open trailer;
-      -- open movieStartTime;
+      open trailer;
 
       -- convert user start time into timestamp --
       startTime:= trunc(to_timestamp(st, 'HH:MI AM'));
 
-      -- fetch pre_sched into rec1;
-
-      -- while pre_sched%found loop
-      --   if(startTime = rec1.start_time) then
-      --     raise invalid_time_slot;
-      --   end if;
-      --   fetch pre_sched into rec1;
-      -- end loop;
-      -- close pre_sched;
-
-      -- read from trailer and movieStartTime cursors --
+      dbms_output.put_line(''||startTime);
 
       fetch trailer into rec2;
-      fetch movieStartTime into rec3;
-
-      -- if(startTime >= rec3.start_time) then
-      --   raise over_time_slot;
-      -- end if;
 
       -- schedual trailer and print updated preschedual --
       insert into trailer_schedule (trailerId, screenId, start_time) values(rec2.trailerId, screenId, startTime);
       dbms_output.put_line('"'|| trailerTitle ||'"'|| ' succesfully scheduled !');
       show_pre_schedule(screenId);
 
-    exception
+      close trailer;
 
-      -- when invalid_time_slot then
-      --   dbms_output.put_line(' '||'start time is already taken');
-
-      -- when over_time_slot then
-      --   dbms_output.put_line(' ' || startTime || ' is past the movie start time of: ' || to_char(rec3.start_time, 'HH:MI:SS AM/PM'));
-        
-      -- when value_error then
-      --   dbms_output.put_line('Invalid start time.');
-
-      -- close pre_sched;
-      -- close trailer;
-      -- close movieStartTime;
     end;
 
 -- Used to get shcedule for the pre-screening --
