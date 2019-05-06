@@ -80,22 +80,22 @@ create or replace package body movie_manager as
     begin
 
       -- open all cursors --
-      open pre_sched;
-      open trailer;
-      open movieStartTime;
+      -- open pre_sched;
+      -- open trailer;
+      -- open movieStartTime;
 
       -- convert user start time into timestamp --
       startTime:= trunc(to_timestamp(st, 'HH:MI AM'));
 
-      fetch pre_sched into rec1;
+      -- fetch pre_sched into rec1;
 
-      while pre_sched%found loop
-        if(startTime = rec1.start_time) then
-          raise invalid_time_slot;
-        end if;
-        fetch pre_sched into rec1;
-      end loop;
-      close pre_sched;
+      -- while pre_sched%found loop
+      --   if(startTime = rec1.start_time) then
+      --     raise invalid_time_slot;
+      --   end if;
+      --   fetch pre_sched into rec1;
+      -- end loop;
+      -- close pre_sched;
 
       -- read from trailer and movieStartTime cursors --
 
@@ -113,18 +113,18 @@ create or replace package body movie_manager as
 
     exception
 
-      when invalid_time_slot then
-        dbms_output.put_line(' '||'start time is already taken');
+      -- when invalid_time_slot then
+      --   dbms_output.put_line(' '||'start time is already taken');
 
-      when over_time_slot then
-        dbms_output.put_line(' ' || startTime || ' is past the movie start time of: ' || to_char(rec3.start_time, 'HH:MI:SS AM/PM'));
+      -- when over_time_slot then
+      --   dbms_output.put_line(' ' || startTime || ' is past the movie start time of: ' || to_char(rec3.start_time, 'HH:MI:SS AM/PM'));
         
-      when value_error then
-        dbms_output.put_line('Invalid start time.');
+      -- when value_error then
+      --   dbms_output.put_line('Invalid start time.');
 
-      close pre_sched;
-      close trailer;
-      close movieStartTime;
+      -- close pre_sched;
+      -- close trailer;
+      -- close movieStartTime;
     end;
 
 -- Used to get shcedule for the pre-screening --
