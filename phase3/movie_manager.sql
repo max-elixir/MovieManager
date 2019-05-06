@@ -5,7 +5,7 @@ create or replace package body movie_manager as
       hrs number;
       mins number;
       hold timestamp;
-      endtime varchar2;
+      endtime varchar2(10);
 
       begin
           hrs:=trunc(runtime);
@@ -60,37 +60,48 @@ create or replace package body movie_manager as
       union
       select ad_sched.start_time from ad_schedule ad_sched where ad_sched.screenId = screenId;
 
-    trailerId film.filmId%type;
+    cursor trailer is
+      select trailer.trailerId from trailer, film where film.title = trailerTitle and film.filmtype = 'trailer';
+
+    cursor movieStartTime is
+      select start_time from movie_schedule ms where ms.screenId=screenId;
+
     startTime timestamp;
-    movieStartTime timestamp;
     invalid_time_slot exception;
     over_time_slot exception;
 
-    rec pre_sched%rowtype;
+    rec1 pre_sched%rowtype;
+    rec2 trailer%rowtype;
+    rec3 movieStartTime%rowtype;
+
 
     begin
-      select t.filmId into trailerId from trailer t, film f where t.title = trailerTitle and f.filmtype = 'trailer';
       startTime:= to_timestamp(st, 'HH:MI:SS AM');
-      select start_time into movieStartTime from movie_schedule ms where ms.screenId=screenId;
 
       open pre_sched;
-      fetch pre_sched into rec;
+      fetch pre_sched into rec1;
 
       while pre_sched%found loop
-        if(startTime=pre_sched.start_time) then
+        if(startTime = rec1.start_time) then
           raise invalid_time_slot;
         end if;
-        fetch pre_sched into rec;
+        fetch pre_sched into rec1;
       end loop;
-
       close pre_sched;
 
-      if(startTime >= movieStartTime) then
+      -- read from trailer and movieStartTime cursors --
+      open trailer;
+      open movieStartTime;
+
+      fetch trailer into rec2;
+      fetch movieStartTime into rec3;
+
+      if(startTime >= rec3.start_time) then
         raise over_time_slot;
       end if;
 
       -- schedual trailer and print updated preschedual --
-      insert into trailer_schedule (trailerId, screenId, start_time) values(trailerId, screenId, startTime);
+      insert into trailer_schedule (trailerId, screenId, start_time) values(rec2.trailerId, screenId, startTime);
       dbms_output.put_line('Success.');
 
     exception
@@ -101,10 +112,13 @@ create or replace package body movie_manager as
         dbms_output.put_line('Time slot of ' || startTime || ' is taken.');
 
       when over_time_slot then
-        dbms_output.put_line(' ' || to_char(movieStartTime, 'HH:MI AM') || ' is past the start of the movie.');
+        dbms_output.put_line(' ' || to_char(rec3.start_time, 'HH:MI AM') || ' is past the start of the movie.');
 
       when others then
         dbms_output.put_line('Invalid start time.');
+
+      close trailer;
+      close movieStartTime;
     end;
 
 -- Used to get shcedule for the pre-screening --
