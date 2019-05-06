@@ -34,11 +34,11 @@ create or replace package body movie_manager as
     dbms_output.put_line('Schedule for '||today);
 
     -- print header --
-    dbms_output.put_line('Title | Genre | Rating | Start Time | End Time |Room Number');
+    dbms_output.put_line('Title | Genre | Rating | Start Time | End Time | Room Number');
 
     while sched%found loop
       dbms_output.put_line(
-        sched_rec.title||'|'||sched_rec.genre||'|'||sched_rec.rating||'|'||sched_rec.start_time||' | '||' | '||sched_rec.room_num);
+        sched_rec.title||'|'||sched_rec.genre||'|'||sched_rec.rating||'|'||sched_rec.start_time||'|'||'|'||sched_rec.room_num);
 
       fetch sched into sched_rec;
     end loop;
