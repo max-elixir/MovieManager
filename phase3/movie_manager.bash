@@ -6,7 +6,7 @@ set serveroutput on;
 exec movie_manager.get_schedule('26-APR-2019');
 exec movie_manager.show_trailers;
 exec movie_manager.show_pre_schedule(77);
-exec movie_manager.schedule_trailer('Hellboy',77,'1:55:00 am');
+exec movie_manager.schedule_trailer('Hellboy',77,'1:55:00 PM');
 exec movie_manager.show_pre_schedule(77);
 exec movie_manager.show_screenings;
 exec movie_manager.show_pre_schedule(1);

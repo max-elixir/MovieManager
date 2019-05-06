@@ -102,13 +102,14 @@ create or replace package body movie_manager as
       fetch trailer into rec2;
       fetch movieStartTime into rec3;
 
-      if(startTime >= rec3.start_time) then
-        raise over_time_slot;
-      end if;
+      -- if(startTime >= rec3.start_time) then
+      --   raise over_time_slot;
+      -- end if;
 
       -- schedual trailer and print updated preschedual --
       insert into trailer_schedule (trailerId, screenId, start_time) values(rec2.trailerId, screenId, startTime);
-      dbms_output.put_line('Success.');
+      dbms_output.put_line('"'|| trailerTitle ||'"'|| ' succesfully scheduled !');
+      show_pre_schedule(screenId);
 
     exception
 
@@ -116,7 +117,7 @@ create or replace package body movie_manager as
         dbms_output.put_line(' '||'start time is already taken');
 
       when over_time_slot then
-        dbms_output.put_line(' ' || startTime || ' is past the movie start time of: ' || to_char(rec3.start_time, 'HH:MI:SS AM'));
+        dbms_output.put_line(' ' || startTime || ' is past the movie start time of: ' || to_char(rec3.start_time, 'HH:MI:SS AM/PM'));
         
       when value_error then
         dbms_output.put_line('Invalid start time.');
