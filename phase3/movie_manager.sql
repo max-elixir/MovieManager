@@ -74,7 +74,6 @@ create or replace package body movie_manager as
     rec2 trailer%rowtype;
     rec3 movieStartTime%rowtype;
 
-
     begin
       startTime:= to_timestamp(st, 'HH:MI:SS AM');
 
@@ -112,7 +111,7 @@ create or replace package body movie_manager as
         dbms_output.put_line('Time slot of ' || startTime || ' is taken.');
 
       when over_time_slot then
-        dbms_output.put_line(' ' || to_char(rec3.start_time, 'HH:MI AM') || ' is past the start of the movie.');
+        dbms_output.put_line(' ' || startTime || ' is past the movie start time of: ' || to_char(rec3.start_time, 'HH:MI'));
 
       when others then
         dbms_output.put_line('Invalid start time.');
@@ -124,49 +123,36 @@ create or replace package body movie_manager as
 -- Used to get shcedule for the pre-screening --
 -- screenId is id of unique movie screening --
 -- a table of type t_record is returned --
-  -- function get_pre_schedule(screenId in movie_schedule.screenId%type) 
-  --   return t_table as v_ret t_table is
-  --   cursor pre_screening_items is
-  --       select f.title, f.runtime, ts.start_time from trailer_schedule ts join film f 
-  --       on ts.filmId = f.filmId join movie_schedule ms on ts.screenId = ms.screenId
-  --       union
-  --       select ad.title, ad.runtime, ad_sched.start_time 
-  --       from ad_schedule ad_sched 
-  --       join ad on ad.adId = ad_sched.adId 
-  --       join movie_schedule ms on ms.screenId = ad_sched.screenId;
+  procedure get_pre_schedule(screen_id in movie_schedule.screenId%type) is
+
+    cursor pre_screening_items is
+      select f.title, f.runtime, ts.start_time, ms.room_num from trailer_schedule ts 
+      join film f on ts.trailerId = f.filmId join movie_schedule ms on ts.screenId = screen_id
+      union
+      select ad.title, ad.runtime, ad_sched.start_time, ms.room_num
+      from ad_schedule ad_sched 
+      join ad on ad.adId = ad_sched.adId 
+      join movie_schedule ms on ms.screenId = screen_id;
       
-  --     pre_sched pre_screening_items%rowtype;
-
-  --     v_ret t_table;
-
-  --     -- define a record type for trailers and ad's --
-  --   type t_record is record(
-  --     tile film.title%type,
-  --     start_time trailer_schedule.start_time%type,
-  --     end_time trailer_schedule.start_time%type,
-  --     room_num movie_schedule.room_num%type
-  --   );
-
-  --   -- define table type for pre-schedule function --
-  --   create type t_table is table of t_record;
+      pre_sched pre_screening_items%rowtype;
         
-  --   begin
+    begin
 
-  --     open pre_screening_items;
-  --     fetch pre_screening_items into pre_sched;
+      open pre_screening_items;
+      fetch pre_screening_items into pre_sched;
 
-  --     while pre_screening_items%found loop
-  --       v_ret() := t_record(pre_sched.title,
-  --       pre_sched.start_time, 
-  --       get_endtime(pre_sched.start_time, pre_sched.runtime),
-  --       pre_sched.room_num
-  --       );
-  --       fetch pre_screening_items into pre_sched;
-  --       end loop;
-  --     close pre_screening_items;
+      dbms_output.put_line('Title | Start Time | Endtime | Room Number');
 
-  --     return v_ret;     
-  --   end;
+      while pre_screening_items%found loop
+
+        dbms_output.put_line(''||pre_sched.title||' | '|| to_char(pre_sched.start_time, 'hh:mi AM')||' | '||
+        get_endtime(pre_sched.start_time, pre_sched.runtime)||' | '||pre_sched.room_num);
+
+        fetch pre_screening_items into pre_sched;
+      end loop;
+
+      close pre_screening_items;
+    end;
 
 --                                Jason's code                                      --
     -- get_profit
@@ -293,6 +279,31 @@ create or replace package body movie_manager as
         when screenIdNotExist then
             dbms_output.put_line('Error: ScreenId does not exist: ' || screenId);
     end;
+
+    -- Prints all screenings with screen id, movie title, and start time --
+    procedure show_screenings is
+
+      cursor screenings is
+        select ms.screenId, f.title, ms.start_time from movie_schedule ms join film f on ms.filmId=f.filmId;
+
+      sc screenings%rowtype;
+
+      begin
+
+        dbms_output.put_line('Screen Id | Title | Start Time');
+
+        open screenings;
+        fetch screenings into sc;
+
+        while screenings%found loop
+          dbms_output.put_line(''||' | '||sc.screenId||' | '|| sc.title ||' | '|| to_char(sc.start_time, 'hh:mi AM'));
+          fetch screenings into sc;
+        end loop;
+
+        close screenings;
+
+      end;
+
 end;
 --                                          End of Jason's code                         --
 /

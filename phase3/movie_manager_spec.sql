@@ -3,6 +3,10 @@ create or replace package movie_manager as
 
   procedure schedule_trailer(trailerTitle in varchar2, screenId in integer, st in varchar2);
 
+  procedure show_screenings;
+
+  procedure get_pre_schedule(screen_id in movie_schedule.screenId%type);
+
   function get_profit(monthYear char)
     return Ad.profit%type;
 
