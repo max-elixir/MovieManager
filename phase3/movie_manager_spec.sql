@@ -5,7 +5,11 @@ create or replace package movie_manager as
 
   procedure show_screenings;
 
-  procedure get_pre_schedule(screen_id in movie_schedule.screenId%type);
+  procedure show_pre_schedule(screen_id in movie_schedule.screenId%type);
+
+  procedure show_trailers;
+
+  procedure show_ads;
 
   function get_profit(monthYear char)
     return Ad.profit%type;

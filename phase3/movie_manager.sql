@@ -13,7 +13,6 @@ create or replace package body movie_manager as
           hold:= to_timestamp(start_time);
           hold:=hold+ ((1/24)*hrs);
           hold:=hold+ ((1/1440)*mins);
-          --dbms_output.put_line(start_time||' then ends at the time '||hold);
           endtime:= to_char(hold, 'hh24:mi');
           return endtime;
       end;
@@ -39,15 +38,19 @@ create or replace package body movie_manager as
 
     while sched%found loop
       dbms_output.put_line(
-        sched_rec.title||'|'||sched_rec.genre||'|'||sched_rec.rating||'|'||sched_rec.start_time||'|'||'|'|| sched_rec.room_num);
+        sched_rec.title||'|'||sched_rec.genre||'|'||sched_rec.rating||'|'||sched_rec.start_time||' | '||' | '||sched_rec.room_num);
 
       fetch sched into sched_rec;
     end loop;
     close sched;
 
     exception
-      when others then
+      when value_error then
         dbms_output.put_line('Invalid date, please try again.');
+
+      when others then
+        dbms_output.put_line('Something happened');
+
   end;
 
   -- Used to schedule a trailer for a given movie --
@@ -61,7 +64,7 @@ create or replace package body movie_manager as
       select ad_sched.start_time from ad_schedule ad_sched where ad_sched.screenId = screenId;
 
     cursor trailer is
-      select trailer.trailerId from trailer, film where film.title = trailerTitle and film.filmtype = 'trailer';
+      select t.trailerId from trailer t join film f on t.trailerId=f.filmId where f.title = trailerTitle;
 
     cursor movieStartTime is
       select start_time from movie_schedule ms where ms.screenId=screenId;
@@ -75,9 +78,15 @@ create or replace package body movie_manager as
     rec3 movieStartTime%rowtype;
 
     begin
-      startTime:= to_timestamp(st, 'HH:MI:SS AM');
 
+      -- open all cursors --
       open pre_sched;
+      open trailer;
+      open movieStartTime;
+
+      -- convert user start time into timestamp --
+      startTime:= trunc(to_timestamp(st, 'HH:MI AM'));
+
       fetch pre_sched into rec1;
 
       while pre_sched%found loop
@@ -89,8 +98,6 @@ create or replace package body movie_manager as
       close pre_sched;
 
       -- read from trailer and movieStartTime cursors --
-      open trailer;
-      open movieStartTime;
 
       fetch trailer into rec2;
       fetch movieStartTime into rec3;
@@ -104,18 +111,17 @@ create or replace package body movie_manager as
       dbms_output.put_line('Success.');
 
     exception
-      when no_data_found then
-        dbms_output.put_line('Trailer with title ' || trailerTitle || ' does not exist.');
-        
+
       when invalid_time_slot then
-        dbms_output.put_line('Time slot of ' || startTime || ' is taken.');
+        dbms_output.put_line(' '||'start time is already taken');
 
       when over_time_slot then
-        dbms_output.put_line(' ' || startTime || ' is past the movie start time of: ' || to_char(rec3.start_time, 'HH:MI'));
-
-      when others then
+        dbms_output.put_line(' ' || startTime || ' is past the movie start time of: ' || to_char(rec3.start_time, 'HH:MI:SS AM'));
+        
+      when value_error then
         dbms_output.put_line('Invalid start time.');
 
+      close pre_sched;
       close trailer;
       close movieStartTime;
     end;
@@ -123,7 +129,7 @@ create or replace package body movie_manager as
 -- Used to get shcedule for the pre-screening --
 -- screenId is id of unique movie screening --
 -- a table of type t_record is returned --
-  procedure get_pre_schedule(screen_id in movie_schedule.screenId%type) is
+  procedure show_pre_schedule(screen_id in movie_schedule.screenId%type) is
 
     cursor pre_screening_items is
       select f.title, f.runtime, ts.start_time, ms.room_num from trailer_schedule ts 
@@ -303,6 +309,49 @@ create or replace package body movie_manager as
         close screenings;
 
       end;
+
+    procedure show_trailers is
+      cursor trailers is
+        select f.title from film f where f.filmtype='trailer';
+
+      my_rec trailers%rowtype;
+
+      begin
+        open trailers;
+
+        fetch trailers into my_rec;
+
+        dbms_output.put_line('__Title__');
+
+        while trailers%found loop
+          dbms_output.put_line(''||' | '||my_rec.title||' | ');
+
+          fetch trailers into my_rec;
+        end loop;
+
+        close trailers;
+      end;
+
+    procedure show_ads is
+      cursor ads is
+          select ad.title from ad;
+
+        my_rec ads%rowtype;
+        begin
+          open ads;
+
+          fetch ads into my_rec;
+
+          dbms_output.put_line('__Title__');
+
+          while ads%found loop
+            dbms_output.put_line(''||' | '||my_rec.title||' | ');
+
+            fetch ads into my_rec;
+          end loop;
+
+          close ads;
+        end;
 
 end;
 --                                          End of Jason's code                         --
