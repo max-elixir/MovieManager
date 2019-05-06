@@ -11,7 +11,7 @@ create or replace package movie_manager as
   procedure reserve_ticket(username users.username%type, password users.password%type, screenId movie_schedule.screenId%type);
 
   function get_endtime(start_time in timestamp, runtime in film.runtime%type)
-      return varchar2 as endtime varchar2(30):=to_char(start_time);
+      return varchar2;
 
 end;
 /

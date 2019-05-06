@@ -1,20 +1,21 @@
 create or replace package body movie_manager as
 
   function get_endtime(start_time in timestamp, runtime in film.runtime%type)
-      return varchar2 as endtime varchar2(30):=to_char(start_time);
-        --as endtime timestamp:=start_time;
-      hours number;
-      minutes number;
+      return varchar2 is
+      hrs number;
+      mins number;
       hold timestamp;
+      endtime varchar2;
+
       begin
-        hours:=trunc(runtime);
-        minutes:=(runtime - hours)*10;
-        hold:= to_timestamp(start_time);
-        hold:=hold+ ((1/24)*hours);
-        hold:=hold+ ((1/1440)*minutes);
-        --dbms_output.put_line(start_time||' then ends at the time '||hold);
-        endtime:= to_char(hold, 'hh24:mi');
-        return endtime;
+          hrs:=trunc(runtime);
+          mins:=(runtime - hrs)*10;
+          hold:= to_timestamp(start_time);
+          hold:=hold+ ((1/24)*hrs);
+          hold:=hold+ ((1/1440)*mins);
+          --dbms_output.put_line(start_time||' then ends at the time '||hold);
+          endtime:= to_char(hold, 'hh24:mi');
+          return endtime;
       end;
 
   procedure get_schedule
@@ -38,8 +39,7 @@ create or replace package body movie_manager as
 
     while sched%found loop
       dbms_output.put_line(
-        sched_rec.title||'|'||sched_rec.genre||'|'||sched_rec.rating||'|'||sched_rec.start_time||'|'||
-        get_endtime(sched_rec.start_time, sched_rec.runtime) || '|'|| sched_rec.room_num);
+        sched_rec.title||'|'||sched_rec.genre||'|'||sched_rec.rating||'|'||sched_rec.start_time||'|'||'|'|| sched_rec.room_num);
 
       fetch sched into sched_rec;
     end loop;
@@ -74,14 +74,16 @@ create or replace package body movie_manager as
       select start_time into movieStartTime from movie_schedule ms where ms.screenId=screenId;
 
       open pre_sched;
-
       fetch pre_sched into rec;
 
       while pre_sched%found loop
+        if(startTime=pre_sched.start_time) then
+          raise invalid_time_slot;
+        end if;
+        fetch pre_sched into rec;
+      end loop;
 
-      if(startTime=pre_sched.start_time) then
-        raise invalid_time_slot;
-      end if;
+      close pre_sched;
 
       if(startTime >= movieStartTime) then
         raise over_time_slot;
