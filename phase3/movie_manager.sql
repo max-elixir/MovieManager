@@ -1,4 +1,22 @@
 create or replace package body movie_manager as
+
+  function get_endtime(start_time in timestamp, runtime in film.runtime%type)
+      return varchar2 as endtime varchar2(30):=to_char(start_time);
+        --as endtime timestamp:=start_time;
+      hours number;
+      minutes number;
+      hold timestamp;
+      begin
+        hours:=trunc(runtime);
+        minutes:=(runtime - hours)*10;
+        hold:= to_timestamp(start_time);
+        hold:=hold+ ((1/24)*hours);
+        hold:=hold+ ((1/1440)*minutes);
+        --dbms_output.put_line(start_time||' then ends at the time '||hold);
+        endtime:= to_char(hold, 'hh24:mi');
+        return endtime;
+      end;
+
   procedure get_schedule
     (today in varchar2 default to_char(SYSDATE,'DD-MON-YYYY')) is
     cursor sched is 
@@ -169,23 +187,6 @@ create or replace package body movie_manager as
     begin
         -- output
         dbms_output.put_line('Total Ad profit for ' || monthYear || ' is: $' || get_profit(monthYear));
-    end;
-
-    function get_endtime(start_time in timestamp, runtime in film.runtime%type)
-    return varchar2 as endtime varchar2(30):=to_char(start_time);
-      --as endtime timestamp:=start_time;
-    hours number;
-    minutes number;
-    hold timestamp;
-    begin
-      hours:=trunc(runtime);
-      minutes:=(runtime - hours)*10;
-      hold:= to_timestamp(start_time);
-      hold:=hold+ ((1/24)*hours);
-      hold:=hold+ ((1/1440)*minutes);
-      --dbms_output.put_line(start_time||' then ends at the time '||hold);
-      endtime:= to_char(hold, 'hh24:mi');
-      return endtime;
     end;
 
     -- reserve_ticket
