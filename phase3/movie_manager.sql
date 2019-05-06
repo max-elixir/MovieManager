@@ -44,11 +44,9 @@ create or replace package body movie_manager as
     close sched;
 
     exception
-      when value_error then
+      when others then
         dbms_output.put_line('Invalid date, please try again.');
 
-      when others then
-        dbms_output.put_line('Something happened');
 
   end;
 

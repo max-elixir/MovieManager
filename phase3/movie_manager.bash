@@ -4,6 +4,7 @@ start movie_manager_spec;
 start movie_manager;
 set serveroutput on;
 exec movie_manager.get_schedule('26-APR-2019');
+exec movie_manager.get_schedule('invalid');
 exec movie_manager.show_trailers;
 exec movie_manager.show_pre_schedule(5);
 exec movie_manager.schedule_trailer('Toy Story 4',5,'1:55 PM');
