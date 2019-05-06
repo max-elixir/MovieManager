@@ -1,11 +1,10 @@
 create or replace package body movie_manager as
 
   function get_endtime(start_time in timestamp, runtime in film.runtime%type)
-      return varchar2 is
+      return varchar2 as endtime varchar2(10);
       hrs number;
       mins number;
       hold timestamp;
-      endtime varchar2(10);
 
       begin
           hrs:=trunc(runtime);
